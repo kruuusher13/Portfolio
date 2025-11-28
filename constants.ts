@@ -109,7 +109,7 @@ export const PROJECTS: Project[] = [
       "Executed end-to-end bathymetric survey missions in simulation, verifying navigation stacks and sensor data flow prior to physical deployment."
     ],
     link: "https://github.com/kruuusher13/Maya_AUV",
-    media: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=800&auto=format&fit=crop" // Placeholder - video file too large for GitHub
+    media: "/Portfolio/media/MAYA-AUV.png"
   },
   {
     id: "rope-control",
