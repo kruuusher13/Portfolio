@@ -26,11 +26,11 @@ const App: React.FC = () => {
               ROMIR MALIK
             </h1>
             <h2 className="text-xl md:text-2xl text-terminal-dim">
-              &lt;DataScientist /&gt;
+              {'<'}DataScientist {'/>'}
             </h2>
 
             <p className="max-w-md text-sm md:text-base leading-relaxed text-slate-400 border-l border-terminal/30 pl-4 py-1">
-              Extracting actionable intelligence from high-dimensional datasets through <span className="text-terminal">Computer Vision</span>, <span className="text-terminal">Probabilistic Modeling</span>, and <span className="text-terminal">Spatial Analytics</span>.
+              Leveraging high-dimensional data to map the unseen. Expert in <span className="text-terminal">problem solving</span>, <span className="text-terminal">extracting insights</span>, and <span className="text-terminal">predicting outcomes</span>.
             </p>
 
             <div className="flex gap-6 pt-4">
@@ -42,6 +42,18 @@ const App: React.FC = () => {
               </a>
               <a href={`mailto:${SOCIAL_LINKS.email}`} className="text-slate-500 hover:text-terminal transition-all hover:-translate-y-1">
                 <Mail size={20} />
+              </a>
+            </div>
+
+            {/* Download CV Button */}
+            <div className="pt-6">
+              <a
+                href="/cv.pdf"
+                download="Romir_Malik_CV.pdf"
+                className="inline-flex items-center gap-2 bg-terminal text-space-900 px-6 py-3 font-bold text-sm hover:bg-terminal-light transition-all hover:shadow-[0_0_20px_rgba(34,197,94,0.3)]"
+              >
+                <FileText size={18} />
+                DOWNLOAD CV
               </a>
             </div>
 
@@ -64,97 +76,64 @@ const App: React.FC = () => {
         </div>
       </Section>
 
-      {/* Experience Section */}
+      {/* Professional Experience Section */}
       <Section id="experience" title="tree ./career_history">
-        <div className="space-y-16">
-
-          <div className="space-y-4">
-            <div className="text-sm text-slate-500 border-b border-space-700 pb-2 mb-6">
-              <span className="text-terminal">.</span>
-              <br />
-              <span className="text-terminal">└──</span> professional_experience/
-            </div>
-
-            <div className="ml-2 md:ml-6 border-l border-space-700 space-y-12">
-              {EXPERIENCE.map((exp, index) => (
-                <div key={exp.id} className="relative pl-8">
-                  {/* Branch Connector */}
-                  <div className="absolute left-0 top-3 w-6 h-px bg-space-700"></div>
-
-                  <div className="group">
-                    <div className="flex flex-col md:flex-row md:items-baseline gap-2 mb-2">
-                      <h3 className="text-lg font-bold text-terminal group-hover:text-terminal-light transition-colors">
-                        {exp.company}
-                      </h3>
-                      <span className="text-xs text-slate-600">[{exp.period}]</span>
-                    </div>
-
-                    <div className="ml-4 border-l border-space-700 pl-6 py-1 space-y-3">
-                      <div className="relative">
-                        <div className="absolute -left-6 top-3 w-4 h-px bg-space-700"></div>
-                        <h4 className="text-sm font-bold text-slate-300">role: "{exp.role}"</h4>
-                      </div>
-
-                      <div className="relative">
-                        <div className="absolute -left-6 top-3 w-4 h-px bg-space-700"></div>
-                        <div className="text-xs text-slate-500 mb-1">log_entries:</div>
-                        <ul className="space-y-1">
-                          {exp.description.map((item, i) => (
-                            <li key={i} className="text-xs md:text-sm text-slate-400 leading-relaxed pl-2 border-l-2 border-transparent hover:border-terminal/50 transition-colors">
-                              <span className="text-terminal-dim mr-2">&gt;</span> {item}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
+        <div className="space-y-4">
+          <div className="text-sm text-slate-500 border-b border-space-700 pb-2 mb-6">
+            <span className="text-terminal">.</span>
+            <br />
+            <span className="text-terminal">└──</span> professional_experience/
           </div>
 
-          <div className="space-y-4">
-            <div className="text-sm text-slate-500 border-b border-space-700 pb-2 mb-6">
-              <span className="text-terminal">└──</span> academic_background/
-            </div>
+          <div className="ml-2 md:ml-6 border-l border-space-700 space-y-12">
+            {EXPERIENCE.map((exp, index) => (
+              <div key={exp.id} className="relative pl-8">
+                {/* Branch Connector */}
+                <div className="absolute left-0 top-3 w-6 h-px bg-space-700"></div>
 
-            <div className="ml-2 md:ml-6 border-l border-space-700 space-y-12">
-              {EDUCATION.map((edu) => (
-                <div key={edu.id} className="relative pl-8">
-                  <div className="absolute left-0 top-3 w-6 h-px bg-space-700"></div>
+                <div className="group">
+                  <div className="flex flex-col md:flex-row md:items-baseline gap-2 mb-2">
+                    <h3 className="text-lg font-bold text-terminal group-hover:text-terminal-light transition-colors">
+                      {exp.company}
+                    </h3>
+                    <span className="text-xs text-slate-600">[{exp.period}]</span>
+                  </div>
 
-                  <div className="group">
-                    <div className="flex flex-col md:flex-row md:items-baseline gap-2 mb-2">
-                      <h3 className="text-lg font-bold text-terminal group-hover:text-terminal-light transition-colors">
-                        {edu.institution}
-                      </h3>
-                      <span className="text-xs text-slate-600">[{edu.period}]</span>
+                  <div className="ml-4 border-l border-space-700 pl-6 py-1 space-y-3">
+                    <div className="relative">
+                      <div className="absolute -left-6 top-3 w-4 h-px bg-space-700"></div>
+                      <h4 className="text-sm font-bold text-slate-300">role: "{exp.role}"</h4>
                     </div>
 
-                    <div className="ml-4 border-l border-space-700 pl-6 py-1 space-y-3">
-                      <div className="relative">
-                        <div className="absolute -left-6 top-3 w-4 h-px bg-space-700"></div>
-                        <p className="text-sm text-slate-300">degree: "{edu.degree}"</p>
-                      </div>
-                      {edu.gpa && (
-                        <div className="relative">
-                          <div className="absolute -left-6 top-3 w-4 h-px bg-space-700"></div>
-                          <p className="text-xs text-terminal/80">stat_gpa: {edu.gpa}</p>
-                        </div>
-                      )}
-                      <div className="relative">
-                        <div className="absolute -left-6 top-3 w-4 h-px bg-space-700"></div>
-                        <div className="space-y-1 mt-1">
-                          {edu.details.map((detail, i) => (
-                            <p key={i} className="text-xs text-slate-500 italic"># {detail}</p>
-                          ))}
-                        </div>
-                      </div>
+                    <div className="relative">
+                      <div className="absolute -left-6 top-3 w-4 h-px bg-space-700"></div>
+                      <div className="text-xs text-slate-500 mb-1">log_entries:</div>
+                      <ul className="space-y-1">
+                        {exp.description.map((item, i) => (
+                          <li key={i} className="text-xs md:text-sm text-slate-400 leading-relaxed pl-2 border-l-2 border-transparent hover:border-terminal/50 transition-colors">
+                            <span className="text-terminal-dim mr-2">&gt;</span> {item}
+                          </li>
+                        ))}
+                      </ul>
                     </div>
+
+                    {/* View Projects Link */}
+                    {exp.link && (
+                      <div className="relative pt-2">
+                        <div className="absolute -left-6 top-5 w-4 h-px bg-space-700"></div>
+                        <a
+                          href={exp.link}
+                          className="inline-flex items-center gap-2 text-xs font-bold text-terminal hover:text-terminal-light border border-terminal/30 hover:border-terminal px-3 py-1.5 transition-all hover:shadow-[0_0_10px_rgba(34,197,94,0.2)]"
+                        >
+                          <ExternalLink size={12} />
+                          VIEW RELATED PROJECTS
+                        </a>
+                      </div>
+                    )}
                   </div>
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
         </div>
       </Section>
@@ -163,7 +142,7 @@ const App: React.FC = () => {
       <Section id="projects" title="ls -la ./projects/">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {PROJECTS.map((project) => (
-            <div key={project.id} className="group relative flex flex-col bg-space-900 border border-space-700 hover:border-terminal transition-all duration-300">
+            <div key={project.id} className="group relative flex flex-col bg-space-900 border border-space-700 hover:border-terminal transition-all duration-300 overflow-hidden">
               <div className="px-4 py-3 border-b border-space-700 bg-space-800/50 flex justify-between items-center">
                 <span className="text-xs text-terminal truncate max-w-[70%]">./{project.id}</span>
                 {project.link && (
@@ -172,6 +151,35 @@ const App: React.FC = () => {
                   </a>
                 )}
               </div>
+
+              {/* Media Section */}
+              {project.media && (
+                <div className="relative w-full h-48 overflow-hidden bg-gradient-to-br from-space-800 to-space-900">
+                  {project.media.endsWith('.mp4') || project.media.endsWith('.webm') ? (
+                    <video
+                      src={project.media}
+                      className="w-full h-full object-cover"
+                      controls
+                      loop
+                      playsInline
+                      preload="metadata"
+                    />
+                  ) : (
+                    <img
+                      src={project.media}
+                      alt={project.title}
+                      className={`w-full h-full object-cover ${project.media.endsWith('.gif')
+                          ? 'opacity-90 group-hover:opacity-100 transition-opacity'
+                          : 'opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-300'
+                        }`}
+                      loading="lazy"
+                    />
+                  )}
+                  {!project.media.endsWith('.mp4') && !project.media.endsWith('.webm') && (
+                    <div className="absolute inset-0 bg-gradient-to-t from-space-900 via-transparent to-transparent opacity-50"></div>
+                  )}
+                </div>
+              )}
 
               <div className="p-4 flex-1 flex flex-col">
                 <h3 className="text-base font-bold text-slate-200 mb-1 group-hover:text-terminal transition-colors">{project.title}</h3>
@@ -251,6 +259,55 @@ const App: React.FC = () => {
               </div>
             </div>
           ))}
+        </div>
+      </Section>
+
+      {/* Education Section */}
+      <Section id="education" title="tree ./academic_background">
+        <div className="space-y-4">
+          <div className="text-sm text-slate-500 border-b border-space-700 pb-2 mb-6">
+            <span className="text-terminal">.</span>
+            <br />
+            <span className="text-terminal">└──</span> education/
+          </div>
+
+          <div className="ml-2 md:ml-6 border-l border-space-700 space-y-12">
+            {EDUCATION.map((edu) => (
+              <div key={edu.id} className="relative pl-8">
+                <div className="absolute left-0 top-3 w-6 h-px bg-space-700"></div>
+
+                <div className="group">
+                  <div className="flex flex-col md:flex-row md:items-baseline gap-2 mb-2">
+                    <h3 className="text-lg font-bold text-terminal group-hover:text-terminal-light transition-colors">
+                      {edu.institution}
+                    </h3>
+                    <span className="text-xs text-slate-600">[{edu.period}]</span>
+                  </div>
+
+                  <div className="ml-4 border-l border-space-700 pl-6 py-1 space-y-3">
+                    <div className="relative">
+                      <div className="absolute -left-6 top-3 w-4 h-px bg-space-700"></div>
+                      <p className="text-sm text-slate-300">degree: "{edu.degree}"</p>
+                    </div>
+                    {edu.gpa && (
+                      <div className="relative">
+                        <div className="absolute -left-6 top-3 w-4 h-px bg-space-700"></div>
+                        <p className="text-xs text-terminal/80">stat_gpa: {edu.gpa}</p>
+                      </div>
+                    )}
+                    <div className="relative">
+                      <div className="absolute -left-6 top-3 w-4 h-px bg-space-700"></div>
+                      <div className="space-y-1 mt-1">
+                        {edu.details.map((detail, i) => (
+                          <p key={i} className="text-xs text-slate-500 italic"># {detail}</p>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </Section>
 

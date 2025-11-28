@@ -4,6 +4,7 @@ export interface Experience {
   company: string;
   period: string;
   description: string[];
+  link?: string;
 }
 
 export interface Education {
@@ -22,6 +23,7 @@ export interface Project {
   techStack: string[];
   description: string[];
   link?: string;
+  media?: string; // URL to image or video
 }
 
 export interface SkillNode {

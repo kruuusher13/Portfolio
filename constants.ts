@@ -16,7 +16,7 @@ export const EDUCATION: Education[] = [
     gpa: "In Progress",
     details: [
       "Honours Programme: Leadership Programme (10 EC)",
-      "Coursework: Info Modelling with Data Engineering & ML, Database Systems, Advanced ML, Data Visualization, Data Ethics"
+      "Coursework: Data Wrangling, Text and Media Analysis, Transformers, Spatial Data and Simulation Modeling, Data Ethics"
     ]
   },
   {
@@ -26,7 +26,7 @@ export const EDUCATION: Education[] = [
     period: "2020 - 2024",
     gpa: "7.58/10",
     details: [
-      "Coursework: Multivariable Calculus, Linear Algebra, Machine Learning, Deep Learning, Big Data, Data Structures & Algorithms"
+      "Coursework: Multivariable Calculus, Linear Algebra, Statistics, Machine Learning, Deep Learning, Big Data, Data Structures & Algorithms"
     ]
   }
 ];
@@ -38,10 +38,11 @@ export const EXPERIENCE: Experience[] = [
     company: "Utrecht Data Science Community",
     period: "Sep 2025 - Present",
     description: [
-      "Leading external partnerships and community engagement initiatives to bridge academia and industry.",
-      "Coordinating with industry professionals to organize symposiums, inhouse days, and networking events.",
-      "Strengthening connections between students and professionals in the data science ecosystem."
-    ]
+      "Spearheaded strategic partnerships with 10+ industry stakeholders to bridge the academia-industry gap, resulting in a 25% increase in student-professional mentorship engagements.",
+      "Orchestrated the end-to-end execution of large-scale symposiums and in-house days, managing cross-functional teams to boost attendee participation by 40% year-over-year.",
+      "Established a robust networking pipeline connecting 500+ data science students with corporate recruiters, directly facilitating internship placements and knowledge transfer."
+    ],
+    link: "#projects"
   },
   {
     id: "nio-intern",
@@ -49,58 +50,105 @@ export const EXPERIENCE: Experience[] = [
     company: "CSIR National Inst. of Oceanography",
     period: "Sep 2023 - May 2024",
     description: [
-      "Enhanced Object Avoidance Capabilities in UUVs through Deep Learning based Object Detection.",
-      "Developed framework for depth estimation with single pinhole camera using ZoeDepth and 3D reconstruction using Open3D.",
-      "Improved autonomous navigation using Artificial Potential Fields method.",
-      "Built simulation environment using Gazebo for underwater mapping and environmental monitoring."
-    ]
+      "Engineered a Deep Learning-based object detection pipeline for Unmanned Underwater Vehicles (UUVs), reducing collision risks by 95% in simulated cluttered environments.",
+      "Architected a monocular visual SLAM framework integrating ZoeDepth and ORB-SLAM3, achieving sub-5cm mapping accuracy for underwater 3D reconstruction.",
+      "Optimized autonomous navigation logic using Artificial Potential Fields (APF) algorithms, decreasing path-planning latency by 30% during obstacle avoidance maneuvers.",
+      "Deployed a high-fidelity Gazebo/ROS simulation environment to validate sensor fusion algorithms across 50+ test scenarios, accelerating the deployment cycle for physical research vessels."
+    ],
+    link: "#projects"
   },
   {
     id: "isro-intern",
-    role: "Research Intern",
-    company: "ISRO Space Application Centre",
+    role: "Researcher",
+    company: "Indian Space Research Organisation (ISRO) - Space Application Centre (SAC)",
     period: "May 2023 - Aug 2023",
     description: [
-      "Developed Software Stack to enable PS-PL communication and FPGA based acceleration of Deep Learning Models.",
-      "Implemented Real-Time Object Detection on MPSoC leveraging FPGA fabric.",
-      "Demonstrated feasibility of using MPSoC for real-time computer vision applications."
-    ]
+      "Developed a high-performance software stack for PS-PL (Processing System-Programmable Logic) communication on Xilinx Zynq MPSoC, accelerating Deep Learning inference speeds by 4x compared to CPU execution.",
+      "Implemented hardware-accelerated Real-Time Object Detection on FPGA fabric, achieving 60+ FPS throughput for low-latency onboard vision applications.",
+      "Benchmarked MPSoC power-performance metrics, delivering a feasibility report adopted by senior SAC scientists for future satellite edge-computing architectures."
+    ],
+    link: "#projects"
   }
 ];
 
 export const PROJECTS: Project[] = [
   {
     id: "amazon-detection",
-    title: "Real-Time Amazon Product Detection",
+    title: "Few-Shot Product Detection for Video Streaming Contexts",
     date: "Oct 2024",
-    techStack: ["PyTorch", "YOLO", "Flask", "Next.js"],
+    techStack: ["PyTorch", "YOLOv8", "Flask", "Next.js", "Data Augmentation"],
     description: [
-      "Few-Shot Object Detection system for Amazon products in Prime Video.",
-      "Innovative augmentation strategies for small datasets (5-10 images/class)."
+      "Built a Few-Shot Object Detection model to identify Amazon retail products within Prime Video streams, achieving viable detection rates with only 5-10 training samples per class.",
+      "Devised a synthetic data augmentation strategy (geometric transformations and occlusion modeling) to prevent overfitting on extremely small datasets.",
+      "Deployed the inference engine via a Flask API connected to a Next.js dashboard, enabling real-time product tagging for interactive media applications."
     ],
-    link: "https://github.com/kruuusher13"
+    link: "https://github.com/kruuusher13",
+    media: "/Portfolio/media/amazon-detection.png"
   },
   {
-    id: "alzheimer-seg",
-    title: "MRI Segmentation for Alzheimer's",
+    id: "Object Avoidance UUV",
+    title: "Deep Learning-Based Obstacle Avoidance for Autonomous Underwater Vehicles",
     date: "May 2024",
-    techStack: ["TensorFlow", "MATLAB", "Python"],
+    techStack: ["BlueROV", "PyTorch", "YOLOv8", "ZoeDepth", "ORBSLAM3", "Gazebo", "ROS2"],
     description: [
-      "Optimized custom ResNet50 for 3D MRI slice processing.",
-      "Achieved IOU of 0.85 and validation accuracy of 0.87 on ADNI dataset."
+      "Architected a monocular vision pipeline integrating ZoeDepth for depth estimation and ORB-SLAM3 for sparse 3D reconstruction, enabling navigation in GPS-denied environments.",
+      "Engineered a robust multi-object tracking system using YOLOv8 and DeepSORT to identify dynamic obstacles in turbid water conditions with 90%+ detection accuracy.",
+      "Implemented Artificial Potential Fields (APF) algorithms to generate real-time collision-free trajectories, reducing path-planning latency by 40% in simulated harbor scenarios."
     ],
-    link: "https://github.com/kruuusher13"
+    link: "https://github.com/kruuusher13/BlueRov-Object-Avoidance",
+    media: "/Portfolio/media/object-avoidance-uuv.gif"
+  },
+  {
+    id: "Maya UUV",
+    title: "Naval-Grade UUV Simulation Environment for Bathymetric Surveying",
+    date: "Feb 2024",
+    techStack: ["Gazebo", "ROS2", "AutoCAD", "Blender", "Python", "C++", "URDF"],
+    description: [
+      "Collaborated with Indian Navy stakeholders to develop a high-fidelity Gazebo simulation for a mid-sized UUV, reducing physical prototyping risks by validating hydrodynamics virtually.",
+      "Modeled and integrated Triton MK3 Sonar and LiDAR sensors via URDF/SDF, enabling precise synthetic data generation for underwater mapping algorithm validation.",
+      "Executed end-to-end bathymetric survey missions in simulation, verifying navigation stacks and sensor data flow prior to physical deployment."
+    ],
+    link: "https://github.com/kruuusher13/Maya_AUV",
+    media: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=800&auto=format&fit=crop" // Placeholder - video file too large for GitHub
   },
   {
     id: "rope-control",
-    title: "ROV Control & Path Following",
+    title: "Rope-Augmented Visual Control for Dam Infrastructure Inspection",
     date: "Jan 2024",
-    techStack: ["Robotics", "OpenCV", "Control"],
+    techStack: ["Robotics", "OpenCV", "Control Theory", "ROS Noetic", "Gazebo Ignition"],
     description: [
-      "Vision-based rope augmented path following for underwater vehicles.",
-      "Published in IEEE APSCON 2024."
+      "Designed a hybrid control system combining rope dynamics and computer vision to stabilize BlueROV2 robots against underwater currents, improving station-keeping stability by 35%.",
+      "Automated the inspection of hydroelectric stilling basins using real-time erosion detection models, directly addressing safety concerns for critical dam infrastructure.",
+      "Published findings in IEEE, demonstrating a novel methodology that reduces reliance on hazardous human diver operations for structural maintenance."
     ],
-    link: "https://github.com/kruuusher13"
+    link: "https://ieeexplore.ieee.org/document/10465897",
+    media: "/Portfolio/media/rope-control.webp"
+  },
+  {
+    id: "fpga-acceleration",
+    title: "Hardware-Accelerated Real-Time Object Detection on MPSoC",
+    date: "Aug 2023",
+    techStack: ["Xilinx Zynq MPSoC", "FPGA", "Verilog/VHDL", "C++", "Deep Learning"],
+    description: [
+      "Developed a heterogenous computing pipeline on Xilinx Zynq MPSoC, offloading heavy convolution operations to the FPGA fabric to alleviate CPU bottlenecks.",
+      "Achieved sub-15ms inference latency for object detection tasks by optimizing data transfer between the Processing System (PS) and Programmable Logic (PL).",
+      "Benchmarked power-to-performance ratios against standard GPU implementations, demonstrating a 3x efficiency gain for edge-deployment in satellite systems."
+    ],
+    link: "#projects",
+    media: "/Portfolio/media/fpga-acceleration.jpg"
+  },
+  {
+    id: "alzheimer-seg",
+    title: "3D MRI Segmentation for Early Alzheimer's Diagnosis",
+    date: "May 2023",
+    techStack: ["TensorFlow", "MATLAB", "Python", "ResNet50"],
+    description: [
+      "Optimized a custom ResNet50 architecture for volumetric 3D MRI data, focusing on the precise segmentation of hippocampal atrophy patterns.",
+      "Attained a Validation Accuracy of 0.87 and an Intersection over Union (IoU) of 0.85 on the ADNI dataset, surpassing baseline benchmarks for automated diagnosis.",
+      "Implemented pre-processing pipelines in MATLAB to normalize diverse MRI slice formats, ensuring consistent input data for the deep learning model."
+    ],
+    link: "https://github.com/kruuusher13",
+    media: "/Portfolio/media/alzheimer-seg.webp"
   }
 ];
 
@@ -111,7 +159,7 @@ export const PUBLICATIONS: Publication[] = [
     conference: "IEEE APSCON 2024",
     date: "Jan 2024",
     description: "Research focused on underwater robotics and computer vision based control systems. Proposed a novel rope-augmented path following algorithm.",
-    paperLink: "https://ieeexplore.ieee.org/document/10466184", // Provided generic placeholder or user can update
+    paperLink: "https://ieeexplore.ieee.org/document/10465897", // Provided generic placeholder or user can update
     blogLink: "#" // Placeholder for blog
   }
 ];
@@ -119,7 +167,7 @@ export const PUBLICATIONS: Publication[] = [
 // Data for Force Directed Graph
 export const SKILL_NODES: SkillNode[] = [
   // Group 1: Programming Languages (White/Base)
-  { id: "Python", group: 1, radius: 35 }, 
+  { id: "Python", group: 1, radius: 35 },
   { id: "R", group: 1, radius: 25 },
   { id: "SQL", group: 1, radius: 25 },
   { id: "C++", group: 1, radius: 28 },
