@@ -10,19 +10,18 @@ interface SectionProps {
 
 const Section: React.FC<SectionProps> = ({ id, title, subtitle, children, className = "" }) => {
   return (
-    <section id={id} className={`min-h-screen py-20 px-6 md:px-16 flex flex-col justify-center ${className}`}>
+    <section id={id} className={`min-h-screen py-24 px-6 md:px-12 flex flex-col justify-center ${className}`}>
       <div className="max-w-7xl mx-auto w-full">
         {(title || subtitle) && (
-          <div className="mb-12 animate-fade-in-up">
+          <div className="mb-16">
             {title && (
-              <h2 className="text-2xl md:text-3xl font-bold text-slate-200 mb-2 font-mono flex items-center gap-3">
-                <span className="text-terminal">$</span>
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 tracking-tight">
                 {title}
-                <span className="animate-pulse w-3 h-6 bg-terminal inline-block ml-2"></span>
+                <span className="text-primary">.</span>
               </h2>
             )}
             {subtitle && (
-              <p className="text-terminal-dim font-mono text-sm mt-2">{subtitle}</p>
+              <p className="text-text-secondary text-lg max-w-2xl">{subtitle}</p>
             )}
           </div>
         )}

@@ -1,15 +1,25 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 const navItems = [
-  { id: 'home', label: '~/home' },
-  { id: 'experience', label: '~/experience' },
-  { id: 'projects', label: '~/projects' },
-  { id: 'publications', label: '~/research' },
-  { id: 'education', label: '~/education' },
-  { id: 'contact', label: '~/contact' },
+  { id: 'home', label: 'Home' },
+  { id: 'experience', label: 'Experience' },
+  { id: 'projects', label: 'Work' },
+  { id: 'publications', label: 'Research' },
+  { id: 'education', label: 'Education' },
+  { id: 'contact', label: 'Contact' },
 ];
 
 const Navigation: React.FC = () => {
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
@@ -18,26 +28,30 @@ const Navigation: React.FC = () => {
   };
 
   return (
-    <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 w-[98%] max-w-4xl">
-      <div className="bg-space-900 border border-space-700 shadow-[0_0_20px_rgba(0,0,0,0.8)] px-3 py-2 flex flex-wrap justify-center items-center gap-2 md:gap-6">
-        <span className="hidden lg:block text-terminal-dark font-mono text-xs select-none">
-          [MENU]
-        </span>
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'py-4 bg-[#030305]/95 border-b border-white/5' : 'py-6 bg-transparent'}`}>
+      <div className="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
+        <div className="text-xl font-bold text-white tracking-tight cursor-pointer" onClick={() => scrollToSection('home')}>
+          RM<span className="text-primary">.</span>
+        </div>
 
-        {navItems.map((item) => (
-          <button
-            key={item.id}
-            onClick={() => scrollToSection(item.id)}
-            className="group px-2 md:px-3 py-1.5 font-mono text-[10px] md:text-xs lg:text-sm text-slate-500 hover:text-terminal transition-all relative whitespace-nowrap"
-          >
-            <span className="opacity-0 group-hover:opacity-100 transition-opacity absolute left-0 text-terminal">&gt;</span>
-            <span className="group-hover:translate-x-2 transition-transform inline-block">
+        <div className="hidden md:flex items-center gap-8">
+          {navItems.map((item) => (
+            <button
+              key={item.id}
+              onClick={() => scrollToSection(item.id)}
+              className="text-sm font-medium text-text-secondary hover:text-white transition-colors"
+            >
               {item.label}
-            </span>
-          </button>
-        ))}
+            </button>
+          ))}
+        </div>
+
+        {/* Mobile Menu Button (Simplified for now) */}
+        <button className="md:hidden text-white" onClick={() => scrollToSection('contact')}>
+          Menu
+        </button>
       </div>
-    </div>
+    </nav>
   );
 };
 

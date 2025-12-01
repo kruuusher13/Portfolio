@@ -36,35 +36,37 @@ const SkillsGraph: React.FC = () => {
     const links = SKILL_LINKS.map(d => ({ ...d }));
 
     const simulation = d3.forceSimulation(nodes as any)
-      .force("link", d3.forceLink(links).id((d: any) => d.id).distance(60)) // Shorter distance for denser mesh
-      .force("charge", d3.forceManyBody().strength(-120)) // Adjusted repulsion
+      .force("link", d3.forceLink(links).id((d: any) => d.id).distance(60))
+      .force("charge", d3.forceManyBody().strength(-120))
       .force("center", d3.forceCenter(width / 2, height / 2))
-      .force("collide", d3.forceCollide().radius((d: any) => d.radius + 4).iterations(2))
-      .force("x", d3.forceX(width / 2).strength(0.06))
-      .force("y", d3.forceY(height / 2).strength(0.06));
+      .force("collide", d3.forceCollide().radius((d: any) => d.radius + 4).iterations(1)) // Reduced iterations
+      .force("x", d3.forceX(width / 2).strength(0.08)) // Increased strength for faster settling
+      .force("y", d3.forceY(height / 2).strength(0.08))
+      .alphaDecay(0.02) // Stabilize faster
+      .velocityDecay(0.4);
 
     // Groups
     const linkGroup = svg.append("g").attr("class", "links");
     const nodeGroup = svg.append("g").attr("class", "nodes");
     const labelGroup = svg.append("g").attr("class", "labels");
 
-    // Colors: Expanded Palette for Groups 1-5
+    // Colors: Expanded Palette for Groups 1-5 (Blue/Purple Theme)
     const colorScale = d3.scaleOrdinal<number, string>()
       .domain([1, 2, 3, 4, 5])
       .range([
-        "#ffffff", // Group 1: Languages (White/High Contrast)
-        "#4ade80", // Group 2: Core Data Science (Bright Terminal Green)
-        "#22c55e", // Group 3: Tools/Frameworks (Standard Green)
-        "#facc15", // Group 4: Robotics/Engineering (Terminal Yellow/Amber for Highlight)
-        "#a7f3d0"  // Group 5: Soft Skills (Pale Green)
+        "#ffffff", // Group 1: Languages (White)
+        "#3B82F6", // Group 2: Core Data Science (Electric Blue)
+        "#8B5CF6", // Group 3: Tools/Frameworks (Purple)
+        "#60A5FA", // Group 4: Robotics/Engineering (Lighter Blue)
+        "#A78BFA"  // Group 5: Soft Skills (Lighter Purple)
       ]);
 
     // Links: Very subtle lines
     const link = linkGroup.selectAll("line")
       .data(links)
       .join("line")
-      .attr("stroke", "#15803d") 
-      .attr("stroke-opacity", 0.3)
+      .attr("stroke", "#3B82F6")
+      .attr("stroke-opacity", 0.15)
       .attr("stroke-width", 0.5);
 
     // Nodes: Minimal dots
@@ -72,24 +74,26 @@ const SkillsGraph: React.FC = () => {
       .data(nodes)
       .join("circle")
       .attr("r", (d: any) => d.radius / 3 + 1)
-      .attr("fill", "#050a05") 
+      .attr("fill", "#030305")
       .attr("stroke", (d: any) => colorScale(d.group))
       .attr("stroke-width", 1.5)
       .call(drag(simulation) as any)
-      .on("mouseover", function(event, d: any) { 
+      .on("mouseover", function (event, d: any) {
         d3.select(this)
           .attr("fill", colorScale(d.group))
           .attr("fill-opacity", 0.8)
           .attr("r", d.radius / 3 + 3);
+        simulation.alphaTarget(0.1).restart(); // Wake up on interaction
       })
-      .on("mouseout", function(event, d: any) { 
+      .on("mouseout", function (event, d: any) {
         d3.select(this)
-          .attr("fill", "#050a05")
+          .attr("fill", "#030305")
           .attr("fill-opacity", 1)
           .attr("r", d.radius / 3 + 1);
+        simulation.alphaTarget(0);
       });
 
-    // Labels: Monospace, clearly visible
+    // Labels: Sans-serif, clearly visible
     const label = labelGroup.selectAll("text")
       .data(nodes)
       .join("text")
@@ -99,8 +103,8 @@ const SkillsGraph: React.FC = () => {
       .attr("text-anchor", "middle")
       .attr("dy", (d: any) => -d.radius / 3 - 6) // Position above node
       .attr("pointer-events", "none")
-      .attr("font-family", "Fira Code, monospace")
-      .attr("font-weight", (d: any) => d.group === 1 || d.group === 2 ? "600" : "300")
+      .attr("font-family", "Inter, sans-serif")
+      .attr("font-weight", (d: any) => d.group === 1 || d.group === 2 ? "600" : "400")
       .attr("opacity", 0.9);
 
     // Simulation Tick
@@ -150,16 +154,32 @@ const SkillsGraph: React.FC = () => {
         .on("end", dragended);
     }
 
+    // Visibility Control: Pause simulation when not in viewport
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) {
+          simulation.stop();
+        } else {
+          simulation.restart();
+        }
+      });
+    }, { threshold: 0.1 });
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+
     return () => {
       simulation.stop();
+      observer.disconnect();
     };
   }, [dimensions]);
 
   return (
     <div ref={containerRef} className="w-full h-full flex justify-center items-center overflow-hidden relative cursor-crosshair">
-      <svg 
-        ref={svgRef} 
-        width={dimensions.width} 
+      <svg
+        ref={svgRef}
+        width={dimensions.width}
         height={dimensions.height}
         className="w-full h-full"
       />

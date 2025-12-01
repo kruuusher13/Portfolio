@@ -13,54 +13,69 @@
       theme: {
         extend: {
           colors: {
-            space: {
-              900: '#050a05', // Very dark green/black
-              800: '#0a140a', // Dark green background
-              700: '#112211', // Borders
+            background: {
+              DEFAULT: '#030305', // Almost black
+              secondary: '#0A0A0C', // Slightly lighter
+              tertiary: '#121216'
             },
-            terminal: {
-              light: '#4ade80', // Bright green
-              DEFAULT: '#22c55e', // Standard green
-              dim: '#15803d', // Darker green
-              dark: '#14532d'  // Very dark green
+            primary: {
+              DEFAULT: '#3B82F6', // Electric Blue
+              hover: '#2563EB',
+              glow: 'rgba(59, 130, 246, 0.5)'
+            },
+            secondary: {
+              DEFAULT: '#8B5CF6', // Purple
+              glow: 'rgba(139, 92, 246, 0.5)'
+            },
+            text: {
+              primary: '#F3F4F6', // Gray 100
+              secondary: '#9CA3AF', // Gray 400
+              muted: '#6B7280' // Gray 500
             }
           },
           fontFamily: {
-            mono: ['"Fira Code"', '"Roboto Mono"', 'monospace'],
             sans: ['"Inter"', 'sans-serif'],
+            mono: ['"Fira Code"', 'monospace'],
           },
-          animation: {
-            'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+          backgroundImage: {
+            'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+            'hero-glow': 'conic-gradient(from 180deg at 50% 50%, #3B82F6 0deg, #8B5CF6 180deg, #3B82F6 360deg)',
           }
         }
       }
     }
   </script>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;600&family=Inter:wght@300;400;600;800&display=swap"
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
     rel="stylesheet">
   <style>
     body {
-      background-color: #050a05;
-      color: #e2e8f0;
+      background-color: #030305;
+      color: #F3F4F6;
+      font-family: 'Inter', sans-serif;
     }
 
-    /* Custom scrollbar */
+    /* Custom scrollbar - Minimal */
     ::-webkit-scrollbar {
-      width: 8px;
+      width: 6px;
     }
 
     ::-webkit-scrollbar-track {
-      background: #050a05;
+      background: #030305;
     }
 
     ::-webkit-scrollbar-thumb {
-      background: #15803d;
-      border-radius: 4px;
+      background: #333;
+      border-radius: 3px;
     }
 
     ::-webkit-scrollbar-thumb:hover {
-      background: #22c55e;
+      background: #555;
+    }
+
+    .glass-panel {
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.05);
     }
   </style>
   <script type="importmap">

@@ -1,75 +1,73 @@
 import React from 'react';
-import UniverseBackground from './components/UniverseBackground';
 import Navigation from './components/Navigation';
 import Section from './components/Section';
 import SkillsGraph from './components/SkillsGraph';
 import { EXPERIENCE, EDUCATION, PROJECTS, PUBLICATIONS, SOCIAL_LINKS } from './constants';
-import { Github, Linkedin, Mail, FileText, ExternalLink } from 'lucide-react';
+import { Github, Linkedin, Mail, FileText, ExternalLink, ArrowRight } from 'lucide-react';
+import ScrambleText from './components/ScrambleText';
 
 const App: React.FC = () => {
   return (
-    <div className="relative text-slate-300 font-mono antialiased overflow-x-hidden selection:bg-terminal/20 selection:text-terminal-light">
-      <UniverseBackground />
+    <div className="relative text-text-primary font-sans antialiased overflow-x-hidden selection:bg-primary/30 selection:text-white">
+      {/* Optimized Background: Static color instead of large gradient */}
+      <div className="fixed inset-0 bg-background -z-10"></div>
       <Navigation />
 
       {/* Hero Section */}
-      <Section id="home" className="pt-20 md:pt-0 min-h-screen flex items-center">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center w-full">
+      <Section id="home" className="pt-32 md:pt-0 min-h-screen flex items-center relative overflow-hidden">
+        {/* Background Glow - Simplified */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-primary/10 blur-[80px] rounded-full -z-10 pointer-events-none"></div>
 
-          {/* Left Column: Terminal Intro */}
-          <div className="space-y-6 z-10">
-            <div className="text-xs md:text-sm text-slate-500 mb-2">
-              <span className="text-terminal">root@romir-malik</span>:<span className="text-blue-400">~/portfolio</span>$ ./init_profile.sh
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center w-full">
+
+          {/* Left Column: Intro */}
+          <div className="space-y-8 z-10">
+            <div className="space-y-2">
+              <h2 className="text-primary font-medium tracking-wide text-sm uppercase">Data Scientist & Engineer</h2>
+              <ScrambleText
+                text="ROMIR MALIK"
+                className="text-5xl md:text-7xl font-bold tracking-tight leading-tight bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-purple-500 to-blue-400 animate-gradient-x"
+              />
             </div>
 
-            <h1 className="text-5xl md:text-7xl font-bold text-slate-100 tracking-tighter">
-              ROMIR MALIK
-            </h1>
-            <h2 className="text-xl md:text-2xl text-terminal-dim">
-              {'<'}DataScientist {'/>'}
-            </h2>
-
-            <p className="max-w-md text-sm md:text-base leading-relaxed text-slate-400 border-l border-terminal/30 pl-4 py-1">
-              Leveraging high-dimensional data to map the unseen. Expert in <span className="text-terminal">problem solving</span>, <span className="text-terminal">extracting insights</span>, and <span className="text-terminal">predicting outcomes</span>.
+            <p className="max-w-lg text-lg text-text-secondary leading-relaxed">
+              Leveraging high-dimensional data to map the unseen. Expert in problem solving, extracting insights, and predicting outcomes.
             </p>
 
-            <div className="flex gap-6 pt-4">
-              <a href={SOCIAL_LINKS.github} target="_blank" rel="noreferrer" className="text-slate-500 hover:text-terminal transition-all hover:-translate-y-1">
-                <Github size={20} />
-              </a>
-              <a href={SOCIAL_LINKS.linkedin} target="_blank" rel="noreferrer" className="text-slate-500 hover:text-terminal transition-all hover:-translate-y-1">
-                <Linkedin size={20} />
-              </a>
-              <a href={`mailto:${SOCIAL_LINKS.email}`} className="text-slate-500 hover:text-terminal transition-all hover:-translate-y-1">
-                <Mail size={20} />
-              </a>
-            </div>
-
-            {/* Download CV Button */}
-            <div className="pt-6">
+            <div className="flex flex-wrap gap-4 pt-4">
               <a
-                href="/cv.pdf"
+                href="#projects"
+                className="inline-flex items-center gap-2 bg-primary hover:bg-primary-hover text-white px-8 py-3.5 rounded-full font-medium transition-all shadow-[0_0_20px_rgba(59,130,246,0.3)] hover:shadow-[0_0_30px_rgba(59,130,246,0.5)]"
+              >
+                View Work
+                <ArrowRight size={18} />
+              </a>
+              <a
+                href="/Portfolio/media/romir_cv.pdf"
                 download="Romir_Malik_CV.pdf"
-                className="inline-flex items-center gap-2 bg-terminal text-space-900 px-6 py-3 font-bold text-sm hover:bg-terminal-light transition-all hover:shadow-[0_0_20px_rgba(34,197,94,0.3)]"
+                className="inline-flex items-center gap-2 bg-white/5 hover:bg-white/10 text-white border border-white/10 px-8 py-3.5 rounded-full font-medium transition-all"
               >
                 <FileText size={18} />
-                DOWNLOAD CV
+                Download CV
               </a>
             </div>
 
-            {/* Quick Status Log */}
-            <div className="pt-8 text-[10px] text-slate-600 space-y-1 font-mono">
-              <p>[SYS] Loading modules...</p>
-              <p>[SYS] Visualizing Neural/Skill Network...</p>
-              <p className="text-terminal">[OK] Interactive Graph Ready.</p>
+            <div className="flex gap-6 pt-8 border-t border-white/5">
+              <a href={SOCIAL_LINKS.github} target="_blank" rel="noreferrer" className="text-text-muted hover:text-white transition-colors">
+                <Github size={22} />
+              </a>
+              <a href={SOCIAL_LINKS.linkedin} target="_blank" rel="noreferrer" className="text-text-muted hover:text-white transition-colors">
+                <Linkedin size={22} />
+              </a>
+              <a href={`mailto:${SOCIAL_LINKS.email}`} className="text-text-muted hover:text-white transition-colors">
+                <Mail size={22} />
+              </a>
             </div>
           </div>
 
           {/* Right Column: The Skills Graph (Main Feature) */}
-          <div className="h-[400px] md:h-[500px] w-full relative border-t border-b border-terminal/20 bg-space-900/30 backdrop-blur-sm lg:border-none lg:bg-transparent">
-            <div className="absolute top-2 right-2 text-[10px] text-terminal/50 z-20">
-              Fig 1.0: Knowledge_Graph
-            </div>
+          <div className="h-[400px] md:h-[500px] w-full relative">
+            <div className="absolute inset-0 bg-gradient-to-tr from-primary/10 to-secondary/10 rounded-full blur-3xl -z-10"></div>
             <SkillsGraph />
           </div>
 
@@ -77,84 +75,66 @@ const App: React.FC = () => {
       </Section>
 
       {/* Professional Experience Section */}
-      <Section id="experience" title="tree ./career_history">
-        <div className="space-y-4">
-          <div className="text-sm text-slate-500 border-b border-space-700 pb-2 mb-6">
-            <span className="text-terminal">.</span>
-            <br />
-            <span className="text-terminal">└──</span> professional_experience/
-          </div>
+      <Section id="experience" title="Experience">
+        <div className="space-y-12">
+          {EXPERIENCE.map((exp, index) => (
+            <div key={exp.id} className="relative pl-8 md:pl-0">
+              <div className="md:flex gap-8 group">
+                {/* Timeline Date (Left on desktop) */}
+                <div className="md:w-1/4 mb-2 md:mb-0 md:text-right relative">
+                  <span className="text-sm font-medium text-text-muted group-hover:text-primary transition-colors">{exp.period}</span>
+                  {/* Timeline dot */}
+                  <div className="absolute right-[-37px] top-1.5 w-3 h-3 rounded-full bg-background border-2 border-text-muted group-hover:border-primary transition-colors hidden md:block z-10"></div>
+                </div>
 
-          <div className="ml-2 md:ml-6 border-l border-space-700 space-y-12">
-            {EXPERIENCE.map((exp, index) => (
-              <div key={exp.id} className="relative pl-8">
-                {/* Branch Connector */}
-                <div className="absolute left-0 top-3 w-6 h-px bg-space-700"></div>
+                {/* Content (Right on desktop) */}
+                <div className="md:w-3/4 relative md:pl-8 md:border-l border-white/10 pb-12 last:pb-0">
+                  {/* Mobile Timeline line */}
+                  <div className="absolute left-[-21px] top-2 bottom-0 w-px bg-white/10 md:hidden"></div>
+                  <div className="absolute left-[-25px] top-2 w-2 h-2 rounded-full bg-primary md:hidden"></div>
 
-                <div className="group">
-                  <div className="flex flex-col md:flex-row md:items-baseline gap-2 mb-2">
-                    <h3 className="text-lg font-bold text-terminal group-hover:text-terminal-light transition-colors">
+                  <div className="mb-4">
+                    <h3 className="text-xl font-bold text-white mb-1">
                       {exp.company}
                     </h3>
-                    <span className="text-xs text-slate-600">[{exp.period}]</span>
+                    <h4 className="text-base font-medium text-primary">{exp.role}</h4>
                   </div>
 
-                  <div className="ml-4 border-l border-space-700 pl-6 py-1 space-y-3">
-                    <div className="relative">
-                      <div className="absolute -left-6 top-3 w-4 h-px bg-space-700"></div>
-                      <h4 className="text-sm font-bold text-slate-300">role: "{exp.role}"</h4>
-                    </div>
+                  <ul className="space-y-3 mb-6">
+                    {exp.description.map((item, i) => (
+                      <li key={i} className="text-text-secondary text-sm leading-relaxed flex gap-3">
+                        <span className="text-primary mt-1.5 w-1.5 h-1.5 rounded-full shrink-0 bg-primary/50"></span>
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
 
-                    <div className="relative">
-                      <div className="absolute -left-6 top-3 w-4 h-px bg-space-700"></div>
-                      <div className="text-xs text-slate-500 mb-1">log_entries:</div>
-                      <ul className="space-y-1">
-                        {exp.description.map((item, i) => (
-                          <li key={i} className="text-xs md:text-sm text-slate-400 leading-relaxed pl-2 border-l-2 border-transparent hover:border-terminal/50 transition-colors">
-                            <span className="text-terminal-dim mr-2">&gt;</span> {item}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-
-                    {/* View Projects Link */}
-                    {exp.link && (
-                      <div className="relative pt-2">
-                        <div className="absolute -left-6 top-5 w-4 h-px bg-space-700"></div>
-                        <a
-                          href={exp.link}
-                          className="inline-flex items-center gap-2 text-xs font-bold text-terminal hover:text-terminal-light border border-terminal/30 hover:border-terminal px-3 py-1.5 transition-all hover:shadow-[0_0_10px_rgba(34,197,94,0.2)]"
-                        >
-                          <ExternalLink size={12} />
-                          VIEW RELATED PROJECTS
-                        </a>
-                      </div>
-                    )}
-                  </div>
+                  {/* View Projects Link */}
+                  {exp.link && (
+                    <a
+                      href={exp.link}
+                      className="inline-flex items-center gap-2 text-xs font-bold text-white hover:text-primary transition-colors"
+                    >
+                      View Related Projects
+                      <ArrowRight size={14} />
+                    </a>
+                  )}
                 </div>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
       </Section>
 
       {/* Projects Section */}
-      <Section id="projects" title="ls -la ./projects/">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <Section id="projects" title="Selected Work">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {PROJECTS.map((project) => (
-            <div key={project.id} className="group relative flex flex-col bg-space-900 border border-space-700 hover:border-terminal transition-all duration-300 overflow-hidden">
-              <div className="px-4 py-3 border-b border-space-700 bg-space-800/50 flex justify-between items-center">
-                <span className="text-xs text-terminal truncate max-w-[70%]">./{project.id}</span>
-                {project.link && (
-                  <a href={project.link} target="_blank" rel="noreferrer" className="text-slate-600 hover:text-terminal">
-                    <Github size={14} />
-                  </a>
-                )}
-              </div>
+            <div key={project.id} className="group relative flex flex-col bg-white/5 border border-white/5 hover:border-primary/50 rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-2xl hover:shadow-primary/10 hover:-translate-y-1">
 
               {/* Media Section */}
               {project.media && (
-                <div className="relative w-full h-48 overflow-hidden bg-gradient-to-br from-space-800 to-space-900">
+                <div className="relative w-full h-48 overflow-hidden bg-background-tertiary">
                   {project.media.endsWith('.mp4') || project.media.endsWith('.webm') ? (
                     <video
                       src={project.media}
@@ -169,31 +149,37 @@ const App: React.FC = () => {
                       src={project.media}
                       alt={project.title}
                       className={`w-full h-full object-cover ${project.media.endsWith('.gif')
-                          ? 'opacity-90 group-hover:opacity-100 transition-opacity'
-                          : 'opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-300'
+                        ? 'opacity-90 group-hover:opacity-100 transition-opacity'
+                        : 'opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500'
                         }`}
                       loading="lazy"
                     />
                   )}
-                  {!project.media.endsWith('.mp4') && !project.media.endsWith('.webm') && (
-                    <div className="absolute inset-0 bg-gradient-to-t from-space-900 via-transparent to-transparent opacity-50"></div>
-                  )}
+                  <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-60"></div>
                 </div>
               )}
 
-              <div className="p-4 flex-1 flex flex-col">
-                <h3 className="text-base font-bold text-slate-200 mb-1 group-hover:text-terminal transition-colors">{project.title}</h3>
-                <p className="text-[10px] text-slate-600 mb-3">{project.date}</p>
+              <div className="p-6 flex-1 flex flex-col">
+                <div className="flex justify-between items-start mb-3">
+                  <h3 className="text-lg font-bold text-white group-hover:text-primary transition-colors">{project.title}</h3>
+                  {project.link && (
+                    <a href={project.link} target="_blank" rel="noreferrer" className="text-text-muted hover:text-white transition-colors">
+                      <Github size={18} />
+                    </a>
+                  )}
+                </div>
 
-                <div className="space-y-2 mb-4 text-xs text-slate-400 leading-relaxed flex-1">
+                <p className="text-xs text-primary font-medium mb-3 uppercase tracking-wider">{project.date}</p>
+
+                <div className="space-y-2 mb-6 text-sm text-text-secondary leading-relaxed flex-1">
                   {project.description.map((d, i) => (
-                    <p key={i} className="line-clamp-3">&gt; {d}</p>
+                    <p key={i} className="line-clamp-3">{d}</p>
                   ))}
                 </div>
 
-                <div className="flex flex-wrap gap-1.5 mt-auto pt-3 border-t border-space-700/30">
+                <div className="flex flex-wrap gap-2 mt-auto pt-4 border-t border-white/5">
                   {project.techStack.map((tech) => (
-                    <span key={tech} className="text-[10px] text-terminal-dim border border-space-700 px-1.5 py-0.5">
+                    <span key={tech} className="text-[10px] font-medium text-text-muted bg-white/5 px-2.5 py-1 rounded-full border border-white/5">
                       {tech}
                     </span>
                   ))}
@@ -205,30 +191,26 @@ const App: React.FC = () => {
       </Section>
 
       {/* Publications Section */}
-      <Section id="publications" title="cat ./research/publications.md">
-        <div className="space-y-8">
-          <div className="text-xs text-slate-500 font-mono mb-4">
-            <p># Research Papers and Articles</p>
-            <p># Click to access external resources</p>
-          </div>
-
+      <Section id="publications" title="Research & Publications">
+        <div className="space-y-6">
           {PUBLICATIONS.map((pub) => (
-            <div key={pub.id} className="border border-space-700 p-6 md:p-8 hover:border-terminal/50 transition-colors bg-space-900/30 relative overflow-hidden group">
-              <div className="absolute top-0 right-0 p-4 opacity-50">
-                <FileText size={48} className="text-space-700 group-hover:text-terminal/10 transition-colors" />
+            <div key={pub.id} className="border border-white/10 p-8 rounded-2xl bg-white/5 hover:bg-white/[0.07] transition-all relative overflow-hidden group">
+              <div className="absolute top-0 right-0 p-8 opacity-5">
+                <FileText size={100} className="text-white" />
               </div>
 
               <div className="relative z-10">
-                <div className="flex flex-wrap gap-3 mb-4 text-xs font-bold font-mono">
-                  <span className="bg-terminal/10 text-terminal px-2 py-1 border border-terminal/20">CONF: {pub.conference}</span>
-                  <span className="bg-space-800 text-slate-400 px-2 py-1 border border-space-700">DATE: {pub.date}</span>
+                <div className="flex flex-wrap gap-3 mb-4 text-xs font-bold uppercase tracking-wider">
+                  <span className="text-primary">{pub.conference}</span>
+                  <span className="text-text-muted">•</span>
+                  <span className="text-text-muted">{pub.date}</span>
                 </div>
 
-                <h3 className="text-xl md:text-2xl font-bold text-slate-100 mb-4 leading-tight group-hover:text-terminal-light transition-colors">
+                <h3 className="text-2xl font-bold text-white mb-4 leading-tight group-hover:text-primary transition-colors">
                   {pub.title}
                 </h3>
 
-                <p className="text-sm text-slate-400 mb-8 max-w-3xl leading-relaxed border-l-2 border-space-700 pl-4">
+                <p className="text-text-secondary mb-8 max-w-3xl leading-relaxed">
                   {pub.description}
                 </p>
 
@@ -238,10 +220,10 @@ const App: React.FC = () => {
                       href={pub.paperLink}
                       target="_blank"
                       rel="noreferrer"
-                      className="flex items-center gap-2 text-xs font-bold bg-terminal text-space-900 px-4 py-2 hover:bg-terminal-light transition-colors"
+                      className="flex items-center gap-2 text-sm font-medium text-white hover:text-primary transition-colors"
                     >
+                      Read Paper
                       <ExternalLink size={14} />
-                      READ PAPER
                     </a>
                   )}
                   {pub.blogLink && (
@@ -249,10 +231,10 @@ const App: React.FC = () => {
                       href={pub.blogLink}
                       target="_blank"
                       rel="noreferrer"
-                      className="flex items-center gap-2 text-xs font-bold border border-terminal text-terminal px-4 py-2 hover:bg-terminal/10 transition-colors"
+                      className="flex items-center gap-2 text-sm font-medium text-white hover:text-primary transition-colors"
                     >
-                      <FileText size={14} />
-                      READ BLOG
+                      Read Blog
+                      <ExternalLink size={14} />
                     </a>
                   )}
                 </div>
@@ -263,93 +245,72 @@ const App: React.FC = () => {
       </Section>
 
       {/* Education Section */}
-      <Section id="education" title="tree ./academic_background">
-        <div className="space-y-4">
-          <div className="text-sm text-slate-500 border-b border-space-700 pb-2 mb-6">
-            <span className="text-terminal">.</span>
-            <br />
-            <span className="text-terminal">└──</span> education/
-          </div>
+      <Section id="education" title="Education">
+        <div className="space-y-8">
+          {EDUCATION.map((edu) => (
+            <div key={edu.id} className="relative pl-8 border-l border-white/10">
+              <div className="absolute left-[-5px] top-2 w-2.5 h-2.5 rounded-full bg-background border-2 border-text-muted"></div>
 
-          <div className="ml-2 md:ml-6 border-l border-space-700 space-y-12">
-            {EDUCATION.map((edu) => (
-              <div key={edu.id} className="relative pl-8">
-                <div className="absolute left-0 top-3 w-6 h-px bg-space-700"></div>
+              <div className="group">
+                <div className="flex flex-col md:flex-row md:items-baseline gap-2 mb-2">
+                  <h3 className="text-xl font-bold text-white group-hover:text-primary transition-colors">
+                    {edu.institution}
+                  </h3>
+                  <span className="text-sm text-text-muted">{edu.period}</span>
+                </div>
 
-                <div className="group">
-                  <div className="flex flex-col md:flex-row md:items-baseline gap-2 mb-2">
-                    <h3 className="text-lg font-bold text-terminal group-hover:text-terminal-light transition-colors">
-                      {edu.institution}
-                    </h3>
-                    <span className="text-xs text-slate-600">[{edu.period}]</span>
-                  </div>
-
-                  <div className="ml-4 border-l border-space-700 pl-6 py-1 space-y-3">
-                    <div className="relative">
-                      <div className="absolute -left-6 top-3 w-4 h-px bg-space-700"></div>
-                      <p className="text-sm text-slate-300">degree: "{edu.degree}"</p>
-                    </div>
-                    {edu.gpa && (
-                      <div className="relative">
-                        <div className="absolute -left-6 top-3 w-4 h-px bg-space-700"></div>
-                        <p className="text-xs text-terminal/80">stat_gpa: {edu.gpa}</p>
-                      </div>
-                    )}
-                    <div className="relative">
-                      <div className="absolute -left-6 top-3 w-4 h-px bg-space-700"></div>
-                      <div className="space-y-1 mt-1">
-                        {edu.details.map((detail, i) => (
-                          <p key={i} className="text-xs text-slate-500 italic"># {detail}</p>
-                        ))}
-                      </div>
-                    </div>
+                <div className="space-y-2">
+                  <p className="text-base text-primary font-medium">{edu.degree}</p>
+                  {edu.gpa && (
+                    <p className="text-sm text-text-secondary">GPA: {edu.gpa}</p>
+                  )}
+                  <div className="pt-2 space-y-1">
+                    {edu.details.map((detail, i) => (
+                      <p key={i} className="text-sm text-text-muted italic">{detail}</p>
+                    ))}
                   </div>
                 </div>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
       </Section>
 
       {/* Contact Section */}
-      <Section id="contact" title="sudo ./contact_me" className="pb-24">
-        <div className="max-w-3xl mx-auto border border-terminal/30 bg-space-900/80 p-8 md:p-12 text-center relative">
-          {/* Decorative Corner Borders */}
-          <div className="absolute top-0 left-0 w-4 h-4 border-t border-l border-terminal"></div>
-          <div className="absolute top-0 right-0 w-4 h-4 border-t border-r border-terminal"></div>
-          <div className="absolute bottom-0 left-0 w-4 h-4 border-b border-l border-terminal"></div>
-          <div className="absolute bottom-0 right-0 w-4 h-4 border-b border-r border-terminal"></div>
+      <Section id="contact" title="Get in Touch" className="pb-24">
+        <div className="max-w-3xl mx-auto text-center">
+          <h3 className="text-3xl font-bold text-white mb-6">Let's Connect</h3>
+          <p className="text-text-secondary mb-12 text-lg">
+            I'm always open to discussing new projects, creative ideas or opportunities to be part of your visions.
+          </p>
 
-          <h3 className="text-xl md:text-2xl font-bold text-slate-200 mb-2">ESTABLISH CONNECTION</h3>
-          <p className="text-xs text-terminal-dim mb-8">Ready for data stream initialization.</p>
-
-          <div className="flex flex-col md:flex-row items-center justify-center gap-6 mb-8">
+          <div className="flex flex-col md:flex-row items-center justify-center gap-6 mb-12">
             <a
               href={`mailto:${SOCIAL_LINKS.email}`}
-              className="w-full md:w-auto border border-slate-700 hover:border-terminal hover:bg-terminal/5 text-slate-300 px-6 py-3 text-sm transition-all"
+              className="w-full md:w-auto bg-white/5 hover:bg-white/10 border border-white/10 text-white px-8 py-4 rounded-full font-medium transition-all"
             >
-              EMAIL: {SOCIAL_LINKS.email}
+              {SOCIAL_LINKS.email}
             </a>
             <a
               href={`tel:${SOCIAL_LINKS.phone}`}
-              className="w-full md:w-auto border border-slate-700 hover:border-terminal hover:bg-terminal/5 text-slate-300 px-6 py-3 text-sm transition-all"
+              className="w-full md:w-auto bg-white/5 hover:bg-white/10 border border-white/10 text-white px-8 py-4 rounded-full font-medium transition-all"
             >
-              PHONE: {SOCIAL_LINKS.phone}
+              {SOCIAL_LINKS.phone}
             </a>
           </div>
 
           <div className="flex justify-center gap-8">
-            <a href={SOCIAL_LINKS.github} target="_blank" rel="noreferrer" className="opacity-60 hover:opacity-100 hover:text-terminal transition-all">
-              <Github size={24} />
+            <a href={SOCIAL_LINKS.github} target="_blank" rel="noreferrer" className="text-text-muted hover:text-white transition-all hover:scale-110">
+              <Github size={32} />
             </a>
-            <a href={SOCIAL_LINKS.linkedin} target="_blank" rel="noreferrer" className="opacity-60 hover:opacity-100 hover:text-terminal transition-all">
-              <Linkedin size={24} />
+            <a href={SOCIAL_LINKS.linkedin} target="_blank" rel="noreferrer" className="text-text-muted hover:text-white transition-all hover:scale-110">
+              <Linkedin size={32} />
             </a>
           </div>
 
-          <div className="mt-12 pt-6 border-t border-space-700 flex justify-between items-center text-[10px] text-slate-600">
-            <span>© 2025 ROMIR MALIK</span>
-            <span className="animate-pulse text-terminal">● SYSTEM ONLINE</span>
+          <div className="mt-24 pt-8 border-t border-white/5 flex justify-between items-center text-sm text-text-muted">
+            <span>© 2025 Romir Malik</span>
+            <span>Designed & Built with AI</span>
           </div>
         </div>
       </Section>
