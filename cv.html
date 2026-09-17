@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Romir Malik: CV</title>
+  <meta name="description" content="Curriculum vitae of Romir Malik, MSc Applied Data Science, Utrecht University." />
+
+  <!--
+    One page, cited inline.
+
+    Order. Experience descends in scale, magnifying in: the Dutch national
+    supercomputer, then two production businesses, then one vehicle without GPS,
+    then the programmable logic on a single satellite die. TNO leads. Education
+    sits below the record, because at this stage the record is the evidence and
+    the degree is the credential.
+
+    Citation. The finding in each claim is bold and its source is a numbered
+    marker after it, and the marker itself is the link. There is no Sources
+    section: it repeated what the markers already carry, and nobody walks to the
+    foot of a page to resolve a number they can click. Each entry heading also
+    carries a repository mark.
+
+    What is deliberately NOT cited. Three sets of figures survive as claims but
+    carry no marker, because no public artifact supports them: the FPGA
+    latency and throughput numbers, whose repository is empty; the underwater
+    detection and planning latency numbers, which the APF repository does not
+    report; and the wetland suitability figures, which are not in the spatial
+    repository. Citing an empty repository is worse than citing nothing.
+
+    Dutch conventions. City and country rather than a street address, a +31
+    number, LinkedIn, no photograph, no date of birth, no BSN, no marital
+    status, and one page. Dutch employers read for clarity and honesty and
+    discount inflated claims, so every figure here is either checkable at its
+    link or stated plainly as the applicant's own.
+
+    Applicant tracking systems. Every entry heading is a single block level line
+    in reading order with dates inline, never a flex row with the date pushed to
+    a right margin. No tables, no floats, no columns, nothing in a running
+    header. Real <h2> headings and real <ul>/<li> bullets. Emphasis is <strong>,
+    not CSS weight, so it survives conversion to DOCX. Body text is plain ASCII,
+    so CO2 and 10^-4 rather than glyphs that extract as stray characters. The
+    repository mark is the only image and is decorative: every link it carries
+    is also a numbered marker in the text.
+
+    Arial, because it is the most traditional thing a CV can be set in and the
+    safest thing a parser can handle. It shares nothing with the website.
+
+    Print it from the browser, or render it with headless Chrome:
+      chrome --headless=new --no-pdf-header-footer --print-to-pdf=cv.pdf cv.html
+  -->
+  <style>
+    :root {
+      --ink: #000;
+      --ink-2: #26292c;
+      --link: #14459b;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { background: #e9e9e7; }
+
+    body {
+      margin: 0;
+      padding: 24px 16px 48px;
+      font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+      font-size: 9.4pt;
+      line-height: 1.27;
+      color: var(--ink-2);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .sheet {
+      max-width: 8.27in;
+      margin: 0 auto;
+      background: #fff;
+      padding: 0.42in 0.5in;
+      border: 1px solid #d6d6d2;
+    }
+
+    /* ------------------------------------------------------------- masthead */
+    h1 {
+      margin: 0;
+      font-size: 16pt;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      text-align: center;
+      text-transform: uppercase;
+      color: var(--ink);
+    }
+
+    .contact {
+      margin: 2px 0 0;
+      text-align: center;
+      font-size: 8.6pt;
+    }
+
+    /* -------------------------------------------------------------- sections
+       The rule under a section heading is part of this format, not decoration
+       added to it. */
+    h2 {
+      margin: 7px 0 2px;
+      padding-bottom: 0.5px;
+      border-bottom: 0.9px solid var(--ink);
+      font-size: 9pt;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--ink);
+    }
+
+    /* The gloss states what the section's order means. It earns its place only
+       because the order is not the one a reader expects. */
+    h2 .gloss {
+      font-weight: 400;
+      letter-spacing: 0;
+      text-transform: none;
+      color: var(--ink-2);
+    }
+
+    .entry { margin-top: 4px; break-inside: avoid; }
+    .entry:first-of-type { margin-top: 2px; }
+
+    /* Two cells: who on the left, when on the right margin.
+       The organisation is the name, so it carries the weight; the role is a
+       description of it and is set plainly. What an applicant tracking system
+       mishandles in a row like this is reordering, not the row: these two spans
+       sit in reading order in the file, so a parser extracts the organisation
+       and role, then the dates, in that order. */
+    .head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 14px;
+    }
+    .head strong { color: var(--ink); }
+    .head .when { flex: 0 0 auto; white-space: nowrap; font-weight: 700; color: var(--ink); }
+
+    /* The role sits under the organisation rather than trailing it. One line
+       carrying organisation, location, role, dates and scale was five things
+       competing for the same run of text. */
+    .role { color: var(--ink-2); margin-bottom: 1px; }
+
+    /* The mark before a name: a repository where the code is public, the site
+       where the product is. Decorative, since the same link is also a numbered
+       marker in the text. */
+    .mark { display: inline-block; vertical-align: -1.5px; margin-right: 4px; }
+    .mark svg { display: block; }
+    .repo svg { fill: var(--ink); }
+    .site svg { fill: none; stroke: var(--ink); stroke-width: 1.4; }
+
+    p { margin: 0; }
+
+    ul { margin: 2px 0 0; padding-left: 14px; }
+
+    li { margin-bottom: 1.5px; }
+
+    li::marker { font-size: 0.8em; }
+
+    .line { margin-top: 3px; }
+    .line strong { color: var(--ink); }
+
+    /* A numbered source marker, as in a paper, and itself the link. */
+    .ref { white-space: nowrap; }
+
+    a { color: var(--link); text-decoration: underline; }
+
+    /* ----------------------------------------------------------------- print */
+    @page { size: A4; margin: 12mm; }
+
+    @media print {
+      html, body { background: #fff; }
+      /* One page, and these are the numbers holding it there. Below about 8pt a
+         printed CV stops being comfortable to read, so anything further has to
+         come out of the text, not the type. */
+      body { padding: 0; font-size: 8.7pt; line-height: 1.28; }
+      .sheet { max-width: none; padding: 0; border: 0; box-shadow: none; }
+      h2 { break-after: avoid; }
+      p, li { orphans: 2; widows: 2; }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="sheet">
+    <h1>Romir Malik</h1>
+    <p class="contact">
+      Utrecht, Netherlands &nbsp;|&nbsp; +31 6 34386359 &nbsp;|&nbsp;
+      <a href="mailto:romir.ds10@gmail.com">romir.ds10@gmail.com</a> &nbsp;|&nbsp;
+      <a href="https://www.linkedin.com/in/romirmalik/">linkedin.com/in/romirmalik</a> &nbsp;|&nbsp;
+      <a href="https://github.com/kruuusher13">github.com/kruuusher13</a> &nbsp;|&nbsp;
+      <a href="https://kruuusher13.github.io/Portfolio/">kruuusher13.github.io/Portfolio</a>
+    </p>
+
+    <h2>Publications</h2>
+
+    <div class="entry">
+      <p class="head"><span><strong>Complexity-aware energy estimation of the data curation pipeline for GPT-NL on HPC clusters.</strong>
+        TNO and Utrecht University, in preparation. MSc thesis; code, CLI and model weights
+        <span class="ref"><a href="https://github.com/kruuusher13/gptnl-energy-estimation-ekf">[1]</a></span>.</span><span class="when">Expected 2027</span></p>
+    </div>
+
+    <div class="entry">
+      <p class="head"><span><strong>Rope-augmented path following and control of a remotely operated underwater vehicle
+        using vision for stilling basin surveillance.</strong> R. Malik et al., IEEE APSCON 2024
+        <span class="ref"><a href="https://ieeexplore.ieee.org/document/10465897">[9]</a></span>.</span><span class="when">Jan 2024</span></p>
+    </div>
+
+    <h2>Professional Experience <span class="gloss">: HPC to silicon</span></h2>
+
+    <div class="entry">
+      <p class="head"><span><a class="mark repo" href="https://github.com/kruuusher13/gptnl-energy-estimation-ekf" title="Source repository"><svg width="9" height="9" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.4 7.4 0 0 1 2-.27c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg></a><strong>TNO</strong>, Netherlands</span><span class="when">Apr 2026 to Jul 2026</span></p>
+      <p class="role">MSc Thesis Researcher</p>
+      <ul>
+        <li>Priced a full GPT-NL data curation run on Snellius in joules, euros and CO2 before launch. A per
+          stage law E = c0 + c1*n over five stages predicts <strong>a held out 400k document run to 2.8%
+          error</strong> from calibration runs of up to 100k
+          <span class="ref"><a href="https://github.com/kruuusher13/gptnl-energy-estimation-ekf">[1]</a></span>.</li>
+        <li>Built an <strong>extended Kalman filter with an innovation gate</strong> as the live mechanism,
+          blending the prior with EAR per job telemetry and rejecting implausible readings: final error moved
+          from +93% to +8% on a contaminated run
+          <span class="ref"><a href="https://github.com/kruuusher13/gptnl-energy-estimation-ekf">[1]</a>,
+          <a href="https://www.bsc.es/research-and-development/software-and-apps/software-list/ear-energy-management-framework-hpc">[10]</a></span>.</li>
+        <li>Ran it <strong>across four corpora differing 100 fold in mean document length</strong>, so estimates
+          transfer per character, not per document. Shipped as a command line tool over six estimators, of
+          which the physics based linear model beat all five learned ones
+          <span class="ref"><a href="https://github.com/kruuusher13/gptnl-energy-estimation-ekf">[1]</a></span>.</li>
+      </ul>
+    </div>
+
+    <div class="entry">
+      <p class="head"><span><a class="mark site" href="https://concertlab.com" title="Website"><svg width="9" height="9" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="7"/><ellipse cx="8" cy="8" rx="3.2" ry="7"/><path d="M1.3 8h13.4"/></svg></a><strong>ConcertLab</strong>, Netherlands</span><span class="when">Sep 2026 to present</span></p>
+      <p class="role">Data Scientist</p>
+      <ul>
+        <li>Work <strong>directly with the CEO on data informed strategy</strong>, on the four year P&amp;L, scenario
+          and unit economics model behind a <strong>&euro;1.5M activation round at a &euro;17M post money
+          valuation</strong>, running two scenarios through capacity and breakeven
+          <span class="ref"><a href="https://concertlab.com">[12]</a></span>.</li>
+        <li>Built the measurement layer for a studio with no instrumentation, making channel attribution
+          observable for the first time: <strong>11 containerised services and 12 always on daemons unifying 5
+          enquiry channels</strong> on Postgres and Redis.</li>
+      </ul>
+    </div>
+
+    <div class="entry">
+      <p class="head"><span><a class="mark site" href="https://torxflow.nl" title="Website"><svg width="9" height="9" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="7"/><ellipse cx="8" cy="8" rx="3.2" ry="7"/><path d="M1.3 8h13.4"/></svg></a><strong>Torxflow</strong>, Netherlands</span><span class="when">May 2026 to present</span></p>
+      <p class="role">Founding Engineer</p>
+      <ul>
+        <li>Founding engineer on <strong>a garage management platform built around three intelligence
+          modules</strong>: smart scheduling, vehicle intelligence and AI diagnosis, over the systems a Dutch
+          workshop already uses. Bilingual Dutch and English
+          <span class="ref"><a href="https://torxflow.nl">[11]</a></span>.</li>
+        <li>Vehicle intelligence resolves a licence plate to service history, profile and parts availability, and
+          scheduling writes into the existing DMS. Telephone intake runs lookup, parts search and labour time
+          pricing concurrently at <strong>390 ms median response and 94% intent confidence</strong>.</li>
+        <li><strong>Graduated from the UtrechtInc validation programme</strong>, Utrecht's startup incubator.</li>
+      </ul>
+    </div>
+
+    <div class="entry">
+      <p class="head"><span><a class="mark repo" href="https://github.com/kruuusher13/APF" title="Source repository"><svg width="9" height="9" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.4 7.4 0 0 1 2-.27c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg></a><strong>Council of Scientific and Industrial Research (CSIR), National Institute of Oceanography</strong>, Goa, India</span><span class="when">Sep 2023 to May 2024</span></p>
+      <p class="role">Machine Learning and Robotics Intern</p>
+      <ul>
+        <li>Built perception and avoidance for an unmanned underwater vehicle with no GPS, on <strong>monocular
+          depth rather than stereo</strong> because a second pressure housing adds a failure mode: ZoeDepth and
+          MiDaS in a GStreamer and ROS pipeline, sparse structure for mapping, potential fields for avoidance
+          <span class="ref"><a href="https://github.com/kruuusher13/APF">[4]</a></span>.</li>
+        <li>Chose potential fields for graceful degradation: a lost detection bends the path rather than breaking
+          it. <strong>Over 90% detection in turbid water and about 40% lower planning latency</strong>, across
+          50 scenarios in a BlueROV2 Gazebo environment
+          <span class="ref"><a href="https://github.com/kruuusher13/BlueRov-Object-Avoidance">[5]</a>,
+          <a href="https://github.com/kruuusher13/Maya_AUV">[6]</a></span>.</li>
+      </ul>
+    </div>
+
+    <div class="entry">
+      <p class="head"><span><strong>Indian Space Research Organisation (ISRO), Space Applications Centre</strong>, Ahmedabad, India</span><span class="when">May 2023 to Aug 2023</span></p>
+      <p class="role">Research Intern</p>
+      <ul>
+        <li>Moved deep learning object detection onto the FPGA fabric of a Xilinx Zynq MPSoC so a satellite can
+          see without a downlink: under 15 ms end to end at a sustained 60+ FPS, a 4x speed up over CPU, at
+          roughly 3x performance per watt.</li>
+        <li>Identified <strong>the data path outside the offloaded region, not the kernel, as the Amdahl
+          bound</strong>: moving feature maps across AXI by DMA with double buffering hit the target with the
+          kernel untouched. Feasibility report adopted by senior SAC scientists for satellite edge computing.</li>
+      </ul>
+    </div>
+
+    <h2>Education</h2>
+
+    <div class="entry">
+      <p class="head"><span><strong>Utrecht University</strong>, MSc Applied Data Science</span><span class="when">Sep 2025 to Aug 2026</span></p>
+      <p>Thesis at TNO. 10/10 on the transformers end term exam. Built <strong>Chess-Bot-20M</strong>, a 38.9M
+        parameter encoder transformer scoring 50% top-1 with zero illegal moves, for the INFOMTALC 2026
+        tournament <span class="ref"><a href="https://github.com/kruuusher13/Chess-Bot-20M">[2]</a></span>.</p>
+    </div>
+
+    <div class="entry">
+      <p class="head"><span><strong>Manipal University Jaipur</strong>, India, BTech in Data Science and Engineering</span><span class="when">2020 to 2024</span></p>
+      
+    </div>
+
+    <h2>Leadership and Entrepreneurship</h2>
+
+    <div class="entry">
+      <p class="head"><span><strong>Utrecht Data Science Community</strong>, Head of External Relations</span><span class="when">Sep 2025 to present</span></p>
+      <p>Own the industry side of Utrecht's data science community: <strong>partnerships with more than 10
+        organisations and a pipeline connecting more than 500 students</strong> to corporate recruiters.
+        Mentorship engagement up 25%, event attendance up 40% year on year.</p>
+    </div>
+
+    <div class="entry">
+      <p class="head"><span><strong>UtrechtInc</strong>, Validation Programme with Torxflow, graduated. Utrecht's startup incubator.</span><span class="when">2026</span></p>
+      
+    </div>
+
+    <h2>Technical Skills</h2>
+
+    <div class="entry">
+      <p><strong>Languages:</strong> Python, SQL, C++, TypeScript, Bash, R, Verilog, VHDL, CUDA C.
+        <strong>ML:</strong> PyTorch, TensorFlow, transformers, scikit-learn, XGBoost, extended Kalman
+        filtering, Monte Carlo, deep reinforcement learning, LLM APIs, RAG. <strong>Perception:</strong> ROS 2,
+        Gazebo, ORB-SLAM3, Point-LIO, OpenCV, Open3D, YOLOv8, sensor fusion. <strong>Systems:</strong> SLURM, Snellius, Docker, Postgres, Redis, pandas, NumPy, Vivado, Zynq
+        MPSoC, GeoPandas, QGIS.
+        <strong>Spoken:</strong> Dutch (beginner, taking classes), English (fluent), Hindi (native).</p>
+    </div>
+
+  </main>
+</body>
+
+</html>
