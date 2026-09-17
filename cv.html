@@ -90,11 +90,14 @@
       color: var(--ink);
     }
 
-    .contact {
-      margin: 2px 0 0;
-      text-align: center;
-      font-size: 8.6pt;
-    }
+    .contact { margin: 2px 0 0; text-align: center; font-size: 8.6pt; }
+
+    /* The claim the rest of the page is evidence for. It was implied by the
+       order of the sections and by a heading, which is not the same as saying
+       it. */
+    .summary { margin-top: 6px; }
+    .auth { margin-top: 3px; }
+    .auth strong { color: var(--ink); }
 
     /* -------------------------------------------------------------- sections
        The rule under a section heading is part of this format, not decoration
@@ -174,7 +177,7 @@
       /* One page, and these are the numbers holding it there. Below about 8pt a
          printed CV stops being comfortable to read, so anything further has to
          come out of the text, not the type. */
-      body { padding: 0; font-size: 8.7pt; line-height: 1.28; }
+      body { padding: 0; font-size: 8.7pt; line-height: 1.25; }
       .sheet { max-width: none; padding: 0; border: 0; box-shadow: none; }
       h2 { break-after: avoid; }
       p, li { orphans: 2; widows: 2; }
@@ -193,18 +196,27 @@
       <a href="https://kruuusher13.github.io/Portfolio/">kruuusher13.github.io/Portfolio</a>
     </p>
 
+    <p class="summary">
+      MSc Applied Data Science, Utrecht University, 2026. I measure what computation costs, in energy, latency
+      and euros, and design against it: FPGA inference at ISRO, pipeline energy on the Dutch national
+      supercomputer at TNO, and the measurement layer behind a product in production.
+    </p>
+
+    <p class="auth"><strong>Work authorisation:</strong> recent Dutch MSc graduate, eligible for the
+      orientation year and for kennismigrant sponsorship.</p>
+
     <h2>Publications</h2>
 
     <div class="entry">
       <p class="head"><span><strong>Complexity-aware energy estimation of the data curation pipeline for GPT-NL on HPC clusters.</strong>
-        TNO and Utrecht University, in preparation. MSc thesis; code, CLI and model weights
-        <span class="ref"><a href="https://github.com/kruuusher13/gptnl-energy-estimation-ekf">[1]</a></span>.</span><span class="when">Expected 2027</span></p>
+        TNO and Utrecht University. MSc thesis; code, CLI and model weights
+        <span class="ref"><a href="https://github.com/kruuusher13/gptnl-energy-estimation-ekf">[1]</a></span>.</span><span class="when">In preparation</span></p>
     </div>
 
     <div class="entry">
       <p class="head"><span><strong>Rope-augmented path following and control of a remotely operated underwater vehicle
         using vision for stilling basin surveillance.</strong> R. Malik et al., IEEE APSCON 2024
-        <span class="ref"><a href="https://ieeexplore.ieee.org/document/10465897">[9]</a></span>.</span><span class="when">Jan 2024</span></p>
+        <span class="ref"><a href="https://ieeexplore.ieee.org/document/10465897">[2]</a></span>.</span><span class="when">Jan 2024</span></p>
     </div>
 
     <h2>Professional Experience <span class="gloss">: HPC to silicon</span></h2>
@@ -221,10 +233,10 @@
           blending the prior with EAR per job telemetry and rejecting implausible readings: final error moved
           from +93% to +8% on a contaminated run
           <span class="ref"><a href="https://github.com/kruuusher13/gptnl-energy-estimation-ekf">[1]</a>,
-          <a href="https://www.bsc.es/research-and-development/software-and-apps/software-list/ear-energy-management-framework-hpc">[10]</a></span>.</li>
+          <a href="https://www.bsc.es/research-and-development/software-and-apps/software-list/ear-energy-management-framework-hpc">[3]</a></span>.</li>
         <li>Ran it <strong>across four corpora differing 100 fold in mean document length</strong>, so estimates
-          transfer per character, not per document. Shipped as a command line tool over six estimators, of
-          which the physics based linear model beat all five learned ones
+          transfer per character, not per document. Shipped as a command line tool over six estimators, the
+          physics based linear model beating all five learned ones
           <span class="ref"><a href="https://github.com/kruuusher13/gptnl-energy-estimation-ekf">[1]</a></span>.</li>
       </ul>
     </div>
@@ -236,10 +248,10 @@
         <li>Work <strong>directly with the CEO on data informed strategy</strong>: built the four year P&amp;L,
           scenario and unit economics model behind a live activation round, running capacity and breakeven
           across two scenarios
-          <span class="ref"><a href="https://concertlab.com">[12]</a></span>.</li>
-        <li>Built the measurement layer for a studio with no instrumentation, making channel attribution
-          observable for the first time: <strong>11 containerised services and 12 always on daemons unifying 5
-          enquiry channels</strong> on Postgres and Redis.</li>
+          <span class="ref"><a href="https://concertlab.com">[4]</a></span>.</li>
+        <li>Built the measurement layer for a studio with no instrumentation: <strong>11 containerised services
+          and 12 always on daemons unifying 5 enquiry channels</strong> on Postgres and Redis, making channel
+          attribution observable for the first time.</li>
       </ul>
     </div>
 
@@ -249,8 +261,8 @@
       <ul>
         <li>Founding engineer on <strong>a garage management platform built around three intelligence
           modules</strong>: smart scheduling, vehicle intelligence and AI diagnosis, over the systems a Dutch
-          workshop already uses. Bilingual Dutch and English
-          <span class="ref"><a href="https://torxflow.nl">[11]</a></span>.</li>
+          workshop already uses
+          <span class="ref"><a href="https://torxflow.nl">[5]</a></span>.</li>
         <li>Vehicle intelligence resolves a licence plate to service history, profile and parts availability, and
           scheduling writes into the existing DMS. Telephone intake runs lookup, parts search and labour time
           pricing concurrently at <strong>390 ms median response and 94% intent confidence</strong>.</li>
@@ -264,13 +276,13 @@
       <ul>
         <li>Built perception and avoidance for an unmanned underwater vehicle with no GPS, on <strong>monocular
           depth rather than stereo</strong> because a second pressure housing adds a failure mode: ZoeDepth and
-          MiDaS in a GStreamer and ROS pipeline, sparse structure for mapping, potential fields for avoidance
-          <span class="ref"><a href="https://github.com/kruuusher13/APF">[4]</a></span>.</li>
+          MiDaS in a GStreamer and ROS pipeline, sparse structure, potential fields for avoidance
+          <span class="ref"><a href="https://github.com/kruuusher13/APF">[6]</a></span>.</li>
         <li>Chose potential fields for graceful degradation: a lost detection bends the path rather than breaking
           it. <strong>Over 90% detection in turbid water and about 40% lower planning latency</strong>, across
-          50 scenarios in a BlueROV2 Gazebo environment
-          <span class="ref"><a href="https://github.com/kruuusher13/BlueRov-Object-Avoidance">[5]</a>,
-          <a href="https://github.com/kruuusher13/Maya_AUV">[6]</a></span>.</li>
+          50 scenarios in Gazebo
+          <span class="ref"><a href="https://github.com/kruuusher13/BlueRov-Object-Avoidance">[7]</a>,
+          <a href="https://github.com/kruuusher13/Maya_AUV">[8]</a></span>.</li>
       </ul>
     </div>
 
@@ -278,12 +290,12 @@
       <p class="head"><span><strong>Indian Space Research Organisation (ISRO), Space Applications Centre</strong>, Ahmedabad, India</span><span class="when">May 2023 to Aug 2023</span></p>
       <p class="role">Research Intern</p>
       <ul>
-        <li>Moved deep learning object detection onto the FPGA fabric of a Xilinx Zynq MPSoC so a satellite can
-          see without a downlink: under 15 ms end to end at a sustained 60+ FPS, a 4x speed up over CPU, at
-          roughly 3x performance per watt.</li>
+        <li>Moved deep learning object detection onto the FPGA fabric of a Xilinx Zynq MPSoC so a satellite sees
+          without a downlink: under 15 ms end to end at 60+ FPS, a 4x speed up over CPU at roughly 3x
+          performance per watt.</li>
         <li>Identified <strong>the data path outside the offloaded region, not the kernel, as the Amdahl
           bound</strong>: moving feature maps across AXI by DMA with double buffering hit the target with the
-          kernel untouched. Feasibility report adopted by senior SAC scientists for satellite edge computing.</li>
+          kernel untouched. Feasibility report adopted by senior SAC scientists.</li>
       </ul>
     </div>
 
@@ -291,9 +303,10 @@
 
     <div class="entry">
       <p class="head"><span><strong>Utrecht University</strong>, MSc Applied Data Science</span><span class="when">Sep 2025 to Aug 2026</span></p>
-      <p>Thesis at TNO. 10/10 on the transformers end term exam. Built <strong>Chess-Bot-20M</strong>, a 38.9M
-        parameter encoder transformer scoring 50% top-1 with zero illegal moves, for the INFOMTALC 2026
-        tournament <span class="ref"><a href="https://github.com/kruuusher13/Chess-Bot-20M">[2]</a></span>.</p>
+      <p>Thesis at TNO. Built <strong>Chess-Bot-20M</strong>, which reframed move selection as classification
+        over the 1,968 legal moves rather than as generation and <strong>won the INFOMTALC 2026 tournament at
+        38.9M parameters, 180x smaller than the 7B baselines</strong> it beat
+        <span class="ref"><a href="https://github.com/kruuusher13/Chess-Bot-20M">[9]</a></span>.</p>
     </div>
 
     <div class="entry">
@@ -306,8 +319,8 @@
     <div class="entry">
       <p class="head"><span><strong>Utrecht Data Science Community</strong>, Head of External Relations</span><span class="when">Sep 2025 to present</span></p>
       <p>Own the industry side of Utrecht's data science community: <strong>partnerships with more than 10
-        organisations and a pipeline connecting more than 500 students</strong> to corporate recruiters.
-        Mentorship engagement up 25%, event attendance up 40% year on year.</p>
+        organisations and a pipeline connecting more than 500 students</strong> to corporate recruiters, with
+        event attendance up 40% year on year.</p>
     </div>
 
     <div class="entry">
@@ -318,12 +331,9 @@
     <h2>Technical Skills</h2>
 
     <div class="entry">
-      <p><strong>Languages:</strong> Python, SQL, C++, TypeScript, Bash, R, Verilog, VHDL, CUDA C.
-        <strong>ML:</strong> PyTorch, TensorFlow, transformers, scikit-learn, XGBoost, extended Kalman
-        filtering, Monte Carlo, deep reinforcement learning, LLM APIs, RAG. <strong>Perception:</strong> ROS 2,
-        Gazebo, ORB-SLAM3, Point-LIO, OpenCV, Open3D, YOLOv8, sensor fusion. <strong>Systems:</strong> SLURM, Snellius, Docker, Postgres, Redis, pandas, NumPy, Vivado, Zynq
-        MPSoC, GeoPandas, QGIS.
-        <strong>Spoken:</strong> Dutch (beginner, taking classes), English (fluent), Hindi (native).</p>
+      <p><strong>Tools:</strong> Python, PyTorch, SQL, C++, SLURM, Snellius, Kalman filtering, ROS 2, Zynq
+        MPSoC, Vivado, transformers, scikit-learn, ORB-SLAM3, OpenCV, Docker, Postgres, Redis, Verilog, CUDA C. <strong>Spoken:</strong> Dutch (beginner, taking classes), English
+        (fluent), Hindi (native).</p>
     </div>
 
   </main>
